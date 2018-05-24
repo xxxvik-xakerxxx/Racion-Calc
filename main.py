@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-
+#TODO: отфиксить это говно.
+#TODO: перевести его в WEB стезю.
 import sys
 from PyQt5.QtWidgets import QLabel, QLineEdit, QRadioButton, QPushButton, QMainWindow, QApplication, QWidget, qApp
 from PyQt5 import QtCore

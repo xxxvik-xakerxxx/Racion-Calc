@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#TODO: отфиксить это говно.
+#TODO: отфиксить это говно. Почти отфиксил, накидак еще пару гонострок.
 #TODO: перевести его в WEB стезю.
 import sys
 from PyQt5.QtWidgets import QLabel, QLineEdit, QRadioButton, QPushButton, QMainWindow, QApplication, QWidget, qApp
@@ -19,37 +19,17 @@ class MyApp(QMainWindow):
         self.ui.pushButton_4.clicked.connect(qApp.quit)
 
     def calc(self):
-        _translate = QtCore.QCoreApplication.translate
         if self.ui.radioButton.isChecked():
-            self.ui.label_26.setText(_translate("Dialog", "1173"))
-            self.ui.label_27.setText(_translate("Dialog", "17.1"))
-            self.ui.label_28.setText(_translate("Dialog", "5.5"))
-            self.ui.label_29.setText(_translate("Dialog", "2.5"))
-            self.ui.label_30.setText(_translate("Dialog", "0.84"))
-            self.ui.label_31.setText(_translate("Dialog", "0.45"))
-            self.ui.label_49.setText(_translate("Dialog", "0.74"))
-            self.ui.label_50.setText(_translate("Dialog", "0.34"))
+            ptic = "dack"
+            self.normi(ptic)
 
         if self.ui.radioButton_2.isChecked():
-            self.ui.label_26.setText(_translate("Dialog", "1130"))
-            self.ui.label_27.setText(_translate("Dialog", "17"))
-            self.ui.label_28.setText(_translate("Dialog", "5.5"))
-            self.ui.label_29.setText(_translate("Dialog", "3.1"))
-            self.ui.label_30.setText(_translate("Dialog", "0.7"))
-            self.ui.label_31.setText(_translate("Dialog", "0.3"))
-            self.ui.label_49.setText(_translate("Dialog", "0.75"))
-            self.ui.label_50.setText(_translate("Dialog", "0.32"))
+            ptic = "chikenb24"
+            self.normi(ptic)
 
         if self.ui.radioButton_3.isChecked():
-            self.ui.label_26.setText(_translate("Dialog", "1290"))
-            self.ui.label_27.setText(_translate("Dialog", "20.5"))
-            self.ui.label_28.setText(_translate("Dialog", "5"))
-            self.ui.label_29.setText(_translate("Dialog", "1"))
-            self.ui.label_30.setText(_translate("Dialog", "0.8"))
-            self.ui.label_31.setText(_translate("Dialog", "0.3"))
-            self.ui.label_49.setText(_translate("Dialog", "1"))
-            self.ui.label_50.setText(_translate("Dialog", "0.43"))
-        self.sum_components()
+            ptic = "perep"
+            self.normi(ptic)
 
     def sum_components(self):
         _translate = QtCore.QCoreApplication.translate
@@ -186,6 +166,75 @@ class MyApp(QMainWindow):
         met = self.calculate_equation(row_met, defaults)
 
         self.calc_end(kdg, sp, sk, cal, fos, na, liz, met)
+
+    def normi(self, ptic):
+
+        _translate = QtCore.QCoreApplication.translate
+        conn = sqlite3.connect('./data/data.db')
+        c = conn.cursor()
+        c.execute("SELECT  COUNT(Gv) FROM normy")
+        st_col = c.fetchone()
+        c.execute("SELECT  kdg FROM normy")
+        row_kdg = c.fetchmany(st_col[0])
+
+        c.execute("SELECT  sp FROM normy")
+        row_sp = c.fetchmany(st_col[0])
+
+        c.execute("SELECT  sk FROM normy")
+        row_sk = c.fetchmany(st_col[0])
+
+        c.execute("SELECT  cal FROM normy")
+        row_cal = c.fetchmany(st_col[0])
+
+        c.execute("SELECT  fos FROM normy")
+        row_fos = c.fetchmany(st_col[0])
+
+        c.execute("SELECT  na FROM normy")
+        row_na = c.fetchmany(st_col[0])
+
+        c.execute("SELECT liz FROM normy")
+        row_liz = c.fetchmany(st_col[0])
+
+        c.execute("SELECT met FROM normy")
+        row_met = c.fetchmany(st_col[0])
+
+        c.close()
+        conn.close()
+
+        if ('dack' in ptic):
+            n=0
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+        
+        if ('chikenb24' in ptic):
+            n=1
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+
+        if ('perep' in ptic):
+            n=2
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+
+    def normi_viv(self, n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met):
+        _translate = QtCore.QCoreApplication.translate
+
+        ptic_kdg = row_kdg[n][0]
+        ptic_sp = row_sp[n][0]
+        ptic_sk = row_sk[n][0]
+        ptic_cal = row_cal[n][0]
+        ptic_fos = row_fos[n][0]
+        ptic_na = row_na[n][0]
+        ptic_liz = row_liz[n][0]
+        ptic_met = row_met[n][0]
+        
+        self.ui.label_26.setText(_translate("Dialog", str(ptic_kdg)))
+        self.ui.label_27.setText(_translate("Dialog", str(ptic_sp)))
+        self.ui.label_28.setText(_translate("Dialog", str(ptic_sk)))
+        self.ui.label_29.setText(_translate("Dialog", str(ptic_cal)))
+        self.ui.label_30.setText(_translate("Dialog", str(ptic_fos)))
+        self.ui.label_31.setText(_translate("Dialog", str(ptic_na)))
+        self.ui.label_49.setText(_translate("Dialog", str(ptic_liz)))
+        self.ui.label_50.setText(_translate("Dialog", str(ptic_met)))
+
+        self.sum_components()
 
     def calc_end(self, kdg, sp, sk, cal, fos, na, liz, met):
         _translate = QtCore.QCoreApplication.translate

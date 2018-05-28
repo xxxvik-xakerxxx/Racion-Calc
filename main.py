@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#TODO: отфиксить это говно. Почти отфиксил, накидак еще пару гонострок.
+#TODO: отфиксить это говно. Почти отфиксил, накидал еще пару говнострок.
 #TODO: перевести его в WEB стезю.
 import sys
 from PyQt5.QtWidgets import QLabel, QLineEdit, QRadioButton, QPushButton, QMainWindow, QApplication, QWidget, qApp
@@ -169,7 +169,6 @@ class MyApp(QMainWindow):
 
     def normi(self, ptic):
 
-        _translate = QtCore.QCoreApplication.translate
         conn = sqlite3.connect('./data/data.db')
         c = conn.cursor()
         c.execute("SELECT  COUNT(Gv) FROM normy")

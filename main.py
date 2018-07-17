@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 #TODO: отфиксить это говно. Почти отфиксил, накидал еще пару говнострок.
-#TODO: перевести его в WEB стезю.
+#TODO: перевести его в WEB стезю. Отказатся от django перейти на Flask (да я мазахист)
 import sys
 from PyQt5.QtWidgets import QLabel, QLineEdit, QRadioButton, QPushButton, QMainWindow, QApplication, QWidget, qApp
 from PyQt5 import QtCore
@@ -20,7 +20,7 @@ class MyApp(QMainWindow):
 
     def calc(self):
         if self.ui.radioButton.isChecked():
-            ptic = "dack"
+            ptic = "dackX11"
             self.normi(ptic)
 
         if self.ui.radioButton_2.isChecked():
@@ -29,6 +29,10 @@ class MyApp(QMainWindow):
 
         if self.ui.radioButton_3.isChecked():
             ptic = "perep"
+            self.normi(ptic)
+
+        if self.ui.radioButton_5.isChecked():
+            ptic = "dack1-7d"
             self.normi(ptic)
 
     def sum_components(self):
@@ -47,8 +51,9 @@ class MyApp(QMainWindow):
         msrs = float(self.ui.lineEdit_12.text())
         r_k = float(self.ui.lineEdit_13.text())
         prem_8203 = float(self.ui.lineEdit_14.text())
+        prem_8201 = float(self.ui.lineEdit_15.text())
         end = (phen + yach + kuk + m_k + fish + prem_8184 + gmih +
-               shr + mk2 + yam + trm + msrs + r_k + prem_8203)
+               shr + mk2 + yam + trm + msrs + r_k + prem_8203 + prem_8201)
 
         if end == 100:
             self.ui.label_12.setStyleSheet("color: rgb(0, 255, 60);")
@@ -57,7 +62,7 @@ class MyApp(QMainWindow):
             self.ui.label_12.setStyleSheet("color: rgb(255, 0, 0);")
             self.ui.label_12.setText(_translate("Dialog", str(end)))
         self.open_bd(phen, yach, kuk, m_k, fish, prem_8184,
-                     gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203)
+                     gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203, prem_8201)
 
     def calculate_equation(self, row, defaults):
         val_phen = row[0][0]
@@ -74,6 +79,7 @@ class MyApp(QMainWindow):
         val_r_k = row[11][0]
         val_prem_8203 = row[12][0]
         val_prem_8184 = row[13][0]
+        val_prem_8201 = row[14][0]
 
         (phen,
          yach,
@@ -88,7 +94,8 @@ class MyApp(QMainWindow):
          trm,
          r_k,
          prem_8203,
-         prem_8184) = defaults
+         prem_8184,
+         prem_8201) = defaults
 
         return ((val_phen * phen) +
                 (val_yach * yach) +
@@ -97,6 +104,7 @@ class MyApp(QMainWindow):
                 (val_fish * fish) +
                 (val_prem_8184 * prem_8184) +
                 (val_prem_8203 * prem_8203) +
+                (val_prem_8201 * prem_8201) +
                 (val_gmih * gmih) +
                 (val_shr * shr) +
                 (val_mk2 * mk2) +
@@ -106,7 +114,7 @@ class MyApp(QMainWindow):
                 (val_r_k * r_k)) / 100
 
     def open_bd(self, phen, yach, kuk, m_k, fish, prem_8184,
-                gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203):
+                gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203, prem_8201):
 
         defaults = (
             phen,
@@ -122,7 +130,8 @@ class MyApp(QMainWindow):
             trm,
             r_k,
             prem_8203,
-            prem_8184
+            prem_8184,
+            prem_8201
         )
 
         conn = sqlite3.connect('./data/data.db')
@@ -200,16 +209,20 @@ class MyApp(QMainWindow):
         c.close()
         conn.close()
 
-        if ('dack' in ptic):
+        if ('dackX11' in ptic):
             n=0
             self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
-        
+
         if ('chikenb24' in ptic):
             n=1
             self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
 
         if ('perep' in ptic):
             n=2
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+
+        if ('dack1-7d' in ptic):
+            n=3
             self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
 
     def normi_viv(self, n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met):
@@ -223,7 +236,7 @@ class MyApp(QMainWindow):
         ptic_na = row_na[n][0]
         ptic_liz = row_liz[n][0]
         ptic_met = row_met[n][0]
-        
+
         self.ui.label_26.setText(_translate("Dialog", str(ptic_kdg)))
         self.ui.label_27.setText(_translate("Dialog", str(ptic_sp)))
         self.ui.label_28.setText(_translate("Dialog", str(ptic_sk)))

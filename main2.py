@@ -5,7 +5,7 @@
 import sys
 from PyQt5.QtWidgets import QLabel, QLineEdit, QComboBox, QPushButton, QMainWindow, QApplication, QWidget, qApp
 from PyQt5 import QtCore
-from res.ui import Ui_Dialog
+from res.ui2 import Ui_Dialog
 import sqlite3
 
 
@@ -17,6 +17,28 @@ class MyApp(QWidget):
 
         self.ui.pushButton.clicked.connect(self.calc)
         self.ui.pushButton_4.clicked.connect(qApp.quit)
+        self.ui.pushButton_5.clicked.connect(self.add_pol)
+
+    def add_pol(self):
+        print ("ya tut")
+        v_pos = 20
+        namber_com = 1
+        namber_lin = 0
+        v_pos += 20
+        namber_com += 1
+        namber_lin += 1
+        combo_Box = "self.ui.comboBox_" + str(namber_com)
+        line_Edit = "self.ui.LineEdit_" + str (namber_lin)
+        print (combo_Box)
+        print (line_Edit)
+        combo_Box  = QComboBox(self)
+        combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
+        combo_Box.setObjectName("comboBox_" + str(namber_com))
+        combo_Box.show()
+        line_Edit = QLineEdit(self)
+        line_Edit.setGeometry(QtCore.QRect(90,int(v_pos),76,22))
+        line_Edit.show()
+        print ("ya tut")
 
     def calc(self):
 

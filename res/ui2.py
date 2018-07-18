@@ -240,8 +240,11 @@ class Ui_Dialog(object):
         self.label_5.setTextFormat(QtCore.Qt.AutoText)
         self.label_5.setObjectName("label_5")
         self.pushButton_5 = QtWidgets.QPushButton(Dialog)
-        self.pushButton_5.setGeometry(QtCore.QRect(170, 290, 101, 24))
+        self.pushButton_5.setGeometry(QtCore.QRect(410, 220, 31, 21))
         self.pushButton_5.setObjectName("pushButton_5")
+        self.lineEdit = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit.setGeometry(QtCore.QRect(330, 220, 71, 20))
+        self.lineEdit.setObjectName("lineEdit")
 
         self.retranslateUi(Dialog)
         self.comboBox.setCurrentIndex(0)
@@ -304,5 +307,5 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(8, _translate("Dialog", "Перепела"))
         self.label_55.setText(_translate("Dialog", "Выберете тип птицы"))
         self.label_5.setText(_translate("Dialog", "<html><head/><body><p>Сумма:</p></body></html>"))
-        self.pushButton_5.setText(_translate("Dialog", "+ компонент"))
+        self.pushButton_5.setText(_translate("Dialog", "+ "))
 

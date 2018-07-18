@@ -19,26 +19,49 @@ class MyApp(QWidget):
         self.ui.pushButton_4.clicked.connect(qApp.quit)
         self.ui.pushButton_5.clicked.connect(self.add_pol)
 
+
     def add_pol(self):
-        print ("ya tut")
-        v_pos = 20
-        namber_com = 1
-        namber_lin = 0
-        v_pos += 20
-        namber_com += 1
-        namber_lin += 1
-        combo_Box = "self.ui.comboBox_" + str(namber_com)
-        line_Edit = "self.ui.LineEdit_" + str (namber_lin)
-        print (combo_Box)
-        print (line_Edit)
-        combo_Box  = QComboBox(self)
-        combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
-        combo_Box.setObjectName("comboBox_" + str(namber_com))
-        combo_Box.show()
-        line_Edit = QLineEdit(self)
-        line_Edit.setGeometry(QtCore.QRect(90,int(v_pos),76,22))
-        line_Edit.show()
-        print ("ya tut")
+        i = float(self.ui.lineEdit.text())
+        v_pos = 40
+        namber_com = 2
+        namber_lin = 2
+        component_list = (
+            "Пшеница",
+            "Ячмень",
+            "Кукуруза",
+            "Рыбная",
+            "Мясо/кос^",
+            "Мясо/кос",
+            "Яичная мука",
+            "Жмых п-сол.",
+            "Шрот соевый",
+            "Масло раст.",
+            "Мука трав.",
+            "Ракушка",
+            "Премикс8203",
+            "Премикс8184",
+            "Премикс8201"
+        )
+        while (i >  0):
+            print ("ya tut")
+            combo_Box = "self.ui.comboBox_" + str(namber_com)
+            line_Edit = "self.ui.LineEdit_" + str (namber_lin)
+            print (combo_Box)
+            print (line_Edit)
+            combo_Box  = QComboBox(self)
+            combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
+            combo_Box.setObjectName("comboBox_" + str(namber_com))
+            combo_Box.addItems(component_list)
+            combo_Box.show()
+            line_Edit = QLineEdit(self)
+            line_Edit.setGeometry(QtCore.QRect(90,int(v_pos),76,22))
+            line_Edit.show()
+            print ("ya tut")
+            v_pos += 30
+            namber_com += 1
+            namber_lin += 1
+            i -= 1
+        return 0;
 
     def calc(self):
 

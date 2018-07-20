@@ -15,7 +15,8 @@ class MyApp(QWidget):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.ui.pushButton.clicked.connect(self.calc)
+
+        self.ui.pushButton.clicked.connect(self.test)
         self.ui.pushButton_4.clicked.connect(qApp.quit)
         self.ui.pushButton_5.clicked.connect(self.add_pol)
 
@@ -26,6 +27,7 @@ class MyApp(QWidget):
         namber_com = 2
         namber_lin = 2
         component_list = (
+            "None",
             "Пшеница",
             "Ячмень",
             "Кукуруза",
@@ -44,13 +46,14 @@ class MyApp(QWidget):
         )
         while (i >  0):
             print ("ya tut")
-            combo_Box = "self.ui.comboBox_" + str(namber_com)
-            line_Edit = "self.ui.LineEdit_" + str (namber_lin)
+            combo_Box = "self.comboBox_" + str(namber_com)
+            line_Edit = "self.LineEdit_" + str (namber_lin)
             print (combo_Box)
             print (line_Edit)
             combo_Box  = QComboBox(self)
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
             combo_Box.setObjectName("comboBox_" + str(namber_com))
+            print (combo_Box.objectName())
             combo_Box.addItems(component_list)
             combo_Box.show()
             line_Edit = QLineEdit(self)
@@ -61,7 +64,17 @@ class MyApp(QWidget):
             namber_com += 1
             namber_lin += 1
             i -= 1
-        return 0;
+
+
+    def test(self):
+        namber = int(self.ui.lineEdit.text()) + 1
+        while namber > 1:
+            print("ya tut")
+            combox = "self.comboBox_" + str(namber)
+            print (combox)
+            index = combox.currentText()
+            namber -= 1
+            print (index)
 
     def calc(self):
 
@@ -105,9 +118,11 @@ class MyApp(QWidget):
 
         if end == 100:
             self.ui.label_12.setStyleSheet("color: rgb(0, 255, 60);")
+
             self.ui.label_12.setText(_translate("Dialog", str(end)))
         else:
             self.ui.label_12.setStyleSheet("color: rgb(255, 0, 0);")
+
             self.ui.label_12.setText(_translate("Dialog", str(end)))
         self.open_bd(phen, yach, kuk, m_k, fish, prem_8184,
                      gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203, prem_8201)
@@ -258,10 +273,7 @@ class MyApp(QWidget):
         conn.close()
 
         if ('dackX11' in ptic):
-            n=0
-            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
 
-        if ('chikenb24' in ptic):
             n=1
             self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
 

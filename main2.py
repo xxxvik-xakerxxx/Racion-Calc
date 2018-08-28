@@ -57,9 +57,9 @@ class MyApp(QWidget):
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
             combo_Box.setObjectName('comboBox_' +str(namber_com))
             com = [combo_Box.objectName()]
-""" вычисляем в переменную порядковый номер комбобокса для удобства"""
-            com_b = tuple(str(com))
-            print(com_b)
+
+            com_b = tuple(str(com)) # вычисляем порядковый номер комбобокса
+            # print(com_b)
             com1 = com_b[11]
             print(com1)
             

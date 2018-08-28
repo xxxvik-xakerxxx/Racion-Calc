@@ -46,11 +46,11 @@ class MyApp(QWidget):
         )
         while (i >  0):
             print ("ya tut")
-            combo_Box = "self.comboBox_" + str(namber_com)
-            line_Edit = "self.LineEdit_" + str (namber_lin)
+            combo_Box = "self.ui.comboBox_" + str(namber_com)
+            line_Edit = "self.ui.LineEdit_" + str (namber_lin)
             print (combo_Box)
             print (line_Edit)
-            combo_Box  = QComboBox(self)
+            combo_Box = QComboBox(self)
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
             combo_Box.setObjectName("comboBox_" + str(namber_com))
             print (combo_Box.objectName())
@@ -70,9 +70,10 @@ class MyApp(QWidget):
         namber = int(self.ui.lineEdit.text()) + 1
         while namber > 1:
             print("ya tut")
-            combox = "self.comboBox_" + str(namber)
+            ui = self.ui
+            combox = "comboBox_" + str(namber)
             print (combox)
-            index = combox.currentText()
+            index= getattr(ui, combox)
             namber -= 1
             print (index)
 

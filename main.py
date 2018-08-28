@@ -165,7 +165,6 @@ class MyApp(QWidget):
         c.execute("SELECT met FROM komponents")
         row_met = c.fetchmany(st_col[0])
 
-        c.close()
         conn.close()
 
         kdg = self.calculate_equation(row_kdg, defaults)
@@ -209,7 +208,6 @@ class MyApp(QWidget):
         c.execute("SELECT met FROM normy")
         row_met = c.fetchmany(st_col[0])
 
-        c.close()
         conn.close()
 
         if ('dackX11' in ptic):

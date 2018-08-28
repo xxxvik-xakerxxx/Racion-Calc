@@ -45,7 +45,7 @@ class MyApp(QWidget):
             "Премикс8201"
         ]
         print(component_list)   # проверка что получилось
-        
+
         while (i >  0):
             """Создание combo_Box по количеству указанному в lineEdit"""
             print ('Вход в цикл...Проверка')
@@ -56,7 +56,15 @@ class MyApp(QWidget):
             combo_Box  = QComboBox(self)
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
             combo_Box.setObjectName('comboBox_' +str(namber_com))
-            print (combo_Box.objectName())
+            com = [combo_Box.objectName()]
+""" вычисляем в переменную порядковый номер комбобокса для удобства"""
+            com_b = tuple(str(com))
+            print(com_b)
+            com1 = com_b[11]
+            print(com1)
+            
+            # com_b = {com: line_edit.text() for i in i}
+            # print(com_b)
             combo_Box.addItems(component_list)
             combo_Box.show()
             line_Edit = QLineEdit(self)
@@ -67,6 +75,8 @@ class MyApp(QWidget):
             namber_com += 1
             #namber_lin += 1
             i -= 1
+
+       
 
 
     def test(self):

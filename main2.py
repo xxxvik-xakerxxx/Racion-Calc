@@ -70,11 +70,9 @@ class MyApp(QWidget):
         namber = int(self.ui.lineEdit.text()) + 1
         while namber > 1:
             print("ya tut")
-            ui = self.ui
-            combox = "comboBox_" + str(namber)
+            combox = "ui.comboBox_" + str(namber) + ".currentText()"
             print (combox)
-            index= getattr(ui, combox)
-            namber -= 1
+            index= getattr (self, combox)
             print (index)
 
     def calc(self):

@@ -22,10 +22,10 @@ class MyApp(QWidget):
 
 
     def add_pol(self):
-        i = float(self.ui.lineEdit.text())
+        i = int(self.ui.lineEdit.text())
         v_pos = 40
         namber_com = 2
-        namber_lin = 2
+        #namber_lin = 2
         component_list = [
             "None",
             "Пшеница",
@@ -44,37 +44,39 @@ class MyApp(QWidget):
             "Премикс8184",
             "Премикс8201"
         ]
-        print(component_list)
+        print(component_list)   # проверка что получилось
+        
         while (i >  0):
-            print ("ya tut")
-            combo_Box = "self.comboBox_" + str(namber_com)
-            line_Edit = "self.LineEdit_" + str (namber_lin)
-            print (combo_Box)
-            print (line_Edit)
+            """Создание combo_Box по количеству указанному в lineEdit"""
+            print ('Вход в цикл...Проверка')
+            combo_Box = 'self.comboBox_' + str(namber_com)
+            line_Edit = 'self.LineEdit_' + str(namber_com)
+            print (combo_Box) #проверка имен combo_Box
+            print (line_Edit) #проверка имен line_Edit
             combo_Box  = QComboBox(self)
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
-            combo_Box.setObjectName("comboBox_" + str(namber_com))
+            combo_Box.setObjectName('comboBox_' +str(namber_com))
             print (combo_Box.objectName())
             combo_Box.addItems(component_list)
             combo_Box.show()
             line_Edit = QLineEdit(self)
             line_Edit.setGeometry(QtCore.QRect(90,int(v_pos),76,22))
             line_Edit.show()
-            print ("ya tut")
+            print ('Выход с цикла')
             v_pos += 30
             namber_com += 1
-            namber_lin += 1
+            #namber_lin += 1
             i -= 1
 
 
     def test(self):
         namber = int(self.ui.lineEdit.text()) + 1
         while namber > 1:
-            print("ya tut")
-            combox = "self.comboBox_" + str(namber)
+            print("След цикл")
+            combox = "self.comboBox_" + str(add_pol.namber_com)
+            namber -= 1
             print (combox)
             index = combox.currentText()
-            namber -= 1
             print (index)
 
     def calc(self):

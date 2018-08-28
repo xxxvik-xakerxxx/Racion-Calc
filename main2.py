@@ -62,9 +62,8 @@ class MyApp(QWidget):
             # print(com_b)
             com1 = com_b[11]
             print(com1)
-            
-            # com_b = {com: line_edit.text() for i in i}
-            # print(com_b)
+            #com_b = {com1: line_edit.text() for i in range(i)}
+            #print(com_b)
             combo_Box.addItems(component_list)
             combo_Box.show()
             line_Edit = QLineEdit(self)

@@ -47,14 +47,7 @@ class MyApp(QWidget):
         print(component_list)   # проверка что получилось
 
         while (i >  0):
-<<<<<<< HEAD
-            print ("ya tut")
-            combo_Box = "self.ui.comboBox_" + str(namber_com)
-            line_Edit = "self.ui.LineEdit_" + str (namber_lin)
-            print (combo_Box)
-            print (line_Edit)
-            combo_Box = QComboBox(self)
-=======
+
             """Создание combo_Box по количеству указанному в lineEdit"""
             print ('Вход в цикл...Проверка')
             combo_Box = 'self.comboBox_' + str(namber_com)
@@ -62,7 +55,6 @@ class MyApp(QWidget):
             print (combo_Box) #проверка имен combo_Box
             print (line_Edit) #проверка имен line_Edit
             combo_Box  = QComboBox(self)
->>>>>>> upstream/master
             combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
             combo_Box.setObjectName('comboBox_' +str(namber_com))
             com = [combo_Box.objectName()]
@@ -84,24 +76,15 @@ class MyApp(QWidget):
             #namber_lin += 1
             i -= 1
 
-       
-
 
     def test(self):
         namber = int(self.ui.lineEdit.text()) + 1
         while namber > 1:
-<<<<<<< HEAD
-            print("ya tut")
-            combox = "ui.comboBox_" + str(namber) + ".currentText()"
-            print (combox)
-            index= getattr (self, combox)
-=======
             print("След цикл")
             combox = "self.comboBox_" + str(add_pol.namber_com)
             namber -= 1
             print (combox)
             index = combox.currentText()
->>>>>>> upstream/master
             print (index)
 
     def calc(self):

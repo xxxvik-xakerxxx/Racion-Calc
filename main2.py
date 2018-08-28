@@ -26,7 +26,7 @@ class MyApp(QWidget):
         v_pos = 40
         namber_com = 2
         namber_lin = 2
-        component_list = (
+        component_list = [
             "None",
             "Пшеница",
             "Ячмень",
@@ -43,7 +43,8 @@ class MyApp(QWidget):
             "Премикс8203",
             "Премикс8184",
             "Премикс8201"
-        )
+        ]
+        print(component_list)
         while (i >  0):
             print ("ya tut")
             combo_Box = "self.comboBox_" + str(namber_com)

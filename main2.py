@@ -1,9 +1,10 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-#TODO: отфиксить это говно. Почти отфиксил, накидал еще пару говнострок.
-#TODO: перевести его в WEB стезю. Отказатся от django перейти на Flask (да я мазахист)
+# TODO: отфиксить это говно. Почти отфиксил, накидал еще пару говнострок.
+# TODO: перевести его в WEB стезю. Отказатся от django перейти на Flask
+# (да я мазахист)
 import sys
-from PyQt5.QtWidgets import QLabel, QLineEdit, QComboBox, QPushButton, QMainWindow, QApplication, QWidget, qApp
+from PyQt5.QtWidgets import QComboBox, QLineEdit, QApplication, QWidget
 from PyQt5 import QtCore
 from res.ui2 import Ui_Dialog
 import sqlite3
@@ -15,17 +16,15 @@ class MyApp(QWidget):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-
         self.ui.pushButton.clicked.connect(self.test)
-        self.ui.pushButton_4.clicked.connect(qApp.quit)
+        self.ui.pushButton_4.clicked.connect(app.quit)
         self.ui.pushButton_5.clicked.connect(self.add_pol)
-
 
     def add_pol(self):
         i = int(self.ui.lineEdit.text())
         v_pos = 40
         namber_com = 2
-        #namber_lin = 2
+        # namber_lin = 2
         component_list = [
             "None",
             "Пшеница",
@@ -46,36 +45,35 @@ class MyApp(QWidget):
         ]
         print(component_list)   # проверка что получилось
 
-        while (i >  0):
+        while (i > 0):
 
             """Создание combo_Box по количеству указанному в lineEdit"""
-            print ('Вход в цикл...Проверка')
+            print('Вход в цикл...Проверка')
             combo_Box = 'self.comboBox_' + str(namber_com)
             line_Edit = 'self.LineEdit_' + str(namber_com)
-            print (combo_Box) #проверка имен combo_Box
-            print (line_Edit) #проверка имен line_Edit
-            combo_Box  = QComboBox(self)
-            combo_Box.setGeometry(QtCore.QRect(0,int(v_pos),81,22))
-            combo_Box.setObjectName('comboBox_' +str(namber_com))
+            print(combo_Box)  # проверка имен combo_Box
+            print(line_Edit)  # проверка имен line_Edit
+            combo_Box = QComboBox(self)
+            combo_Box.setGeometry(QtCore.QRect(0, int(v_pos), 81, 22))
+            combo_Box.setObjectName('comboBox_'+str(namber_com))
             com = [combo_Box.objectName()]
 
-            com_b = tuple(str(com)) # вычисляем порядковый номер комбобокса
+            com_b = tuple(str(com))  # вычисляем порядковый номер комбобокса
             # print(com_b)
             com1 = com_b[11]
             print(com1)
-            #com_b = {com1: line_edit.text() for i in range(i)}
-            #print(com_b)
+            # com_b = {com1: line_edit.text() for i in range(i)}
+            # print(com_b)
             combo_Box.addItems(component_list)
             combo_Box.show()
             line_Edit = QLineEdit(self)
-            line_Edit.setGeometry(QtCore.QRect(90,int(v_pos),76,22))
+            line_Edit.setGeometry(QtCore.QRect(90, int(v_pos), 76, 22))
             line_Edit.show()
-            print ('Выход с цикла')
+            print('Выход с цикла')
             v_pos += 30
             namber_com += 1
-            #namber_lin += 1
+            # namber_lin += 1
             i -= 1
-
 
     def test(self):
         namber = int(self.ui.lineEdit.text()) + 1
@@ -83,9 +81,9 @@ class MyApp(QWidget):
             print("След цикл")
             combox = "self.comboBox_" + str(add_pol.namber_com)
             namber -= 1
-            print (combox)
+            print(combox)
             index = combox.currentText()
-            print (index)
+            print(index)
 
     def calc(self):
 
@@ -124,8 +122,8 @@ class MyApp(QWidget):
         r_k = float(self.ui.lineEdit_13.text())
         prem_8203 = float(self.ui.lineEdit_14.text())
         prem_8201 = float(self.ui.lineEdit_15.text())
-        end = (phen + yach + kuk + m_k + fish + prem_8184 + gmih +
-               shr + mk2 + yam + trm + msrs + r_k + prem_8203 + prem_8201)
+        end = (phen + yach + kuk + m_k + fish + prem_8184 + gmih
+               + shr + mk2 + yam + trm + msrs + r_k + prem_8203 + prem_8201)
 
         if end == 100:
             self.ui.label_12.setStyleSheet("color: rgb(0, 255, 60);")
@@ -171,21 +169,21 @@ class MyApp(QWidget):
          prem_8184,
          prem_8201) = defaults
 
-        return ((val_phen * phen) +
-                (val_yach * yach) +
-                (val_kuk * kuk) +
-                (val_m_k * m_k) +
-                (val_fish * fish) +
-                (val_prem_8184 * prem_8184) +
-                (val_prem_8203 * prem_8203) +
-                (val_prem_8201 * prem_8201) +
-                (val_gmih * gmih) +
-                (val_shr * shr) +
-                (val_mk2 * mk2) +
-                (val_yam * yam) +
-                (val_trm * trm) +
-                (val_msrs * msrs) +
-                (val_r_k * r_k)) / 100
+        return ((val_phen * phen)
+                + (val_yach * yach)
+                + (val_kuk * kuk)
+                + (val_m_k * m_k)
+                + (val_fish * fish)
+                + (val_prem_8184 * prem_8184)
+                + (val_prem_8203 * prem_8203)
+                + (val_prem_8201 * prem_8201)
+                + (val_gmih * gmih)
+                + (val_shr * shr)
+                + (val_mk2 * mk2)
+                + (val_yam * yam)
+                + (val_trm * trm)
+                + (val_msrs * msrs)
+                + (val_r_k * r_k)) / 100
 
     def open_bd(self, phen, yach, kuk, m_k, fish, prem_8184,
                 gmih, shr, mk2, yam, trm, msrs, r_k, prem_8203, prem_8201):
@@ -285,18 +283,22 @@ class MyApp(QWidget):
 
         if ('dackX11' in ptic):
 
-            n=1
-            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+            n = 1
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos,
+                           row_na, row_liz, row_met)
 
         if ('perep' in ptic):
-            n=2
-            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+            n = 2
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos,
+                           row_na, row_liz, row_met)
 
         if ('dack1-7d' in ptic):
-            n=3
-            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met)
+            n = 3
+            self.normi_viv(n, row_kdg, row_sp, row_sk, row_cal, row_fos,
+                           row_na, row_liz, row_met)
 
-    def normi_viv(self, n, row_kdg, row_sp, row_sk, row_cal, row_fos, row_na, row_liz, row_met):
+    def normi_viv(self, n, row_kdg, row_sp, row_sk, row_cal, row_fos,
+                  row_na, row_liz, row_met):
         _translate = QtCore.QCoreApplication.translate
 
         ptic_kdg = row_kdg[n][0]

@@ -6,7 +6,8 @@
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
+
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -306,6 +307,5 @@ class Ui_Dialog(object):
         self.comboBox.setItemText(7, _translate("Dialog", "---Перепела---"))
         self.comboBox.setItemText(8, _translate("Dialog", "Перепела"))
         self.label_55.setText(_translate("Dialog", "Выберете тип птицы"))
-        self.label_5.setText(_translate("Dialog", "<html><head/><body><p>Сумма:</p></body></html>"))
+        self.label_5.setText(_translate("Dialog", "Сумма:"))
         self.pushButton_5.setText(_translate("Dialog", "+ "))
-

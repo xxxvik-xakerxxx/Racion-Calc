@@ -7,7 +7,15 @@ import sys
 from PyQt5.QtWidgets import QComboBox, QLineEdit, QApplication, QWidget
 from PyQt5 import QtCore
 from res.ui2 import Ui_Dialog
+from res.base import Ui_Dialog2
 import sqlite3
+
+
+class BaseWind(QWidget):
+    def __init__(self):
+        QWidget.__init__(self)
+        self.ui2 = Ui_Dialog2()
+        self.ui2.setupUi(self)
 
 
 class MyApp(QWidget):
@@ -17,8 +25,13 @@ class MyApp(QWidget):
         self.ui.setupUi(self)
 
         self.ui.pushButton.clicked.connect(self.test)
+        self.ui.pushButton_3.clicked.connect(self.show_basewind)
         self.ui.pushButton_4.clicked.connect(app.quit)
         self.ui.pushButton_5.clicked.connect(self.add_pol)
+
+    def show_basewind(self):
+        self.dialog1 = BaseWind()
+        self.dialog1.show()
 
     def add_pol(self):
         i = int(self.ui.lineEdit.text())
